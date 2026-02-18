@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Romina Solución Digital Pro</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#000814,#001d3d);
+    color:white;
+    text-align:center;
+}
+
+section{padding:100px 20px;}
+
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+h1{
+    font-size:50px;
+    background: linear-gradient(90deg,#00d4ff,#b84dff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.btn{
+    padding:16px 40px;
+    border-radius:50px;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    background: linear-gradient(90deg,#00d4ff,#b84dff);
+    color:white;
+    margin-top:25px;
+    transition:0.3s;
+}
+
+.btn:hover{transform:scale(1.05);}
+
+.card{
+    background:rgba(255,255,255,0.05);
+    padding:30px;
+    border-radius:20px;
+    margin:15px auto;
+    max-width:600px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+    max-width:1100px;
+    margin:auto;
+}
+
+.hidden{display:none;}
+
+iframe{
+    border-radius:20px;
+    box-shadow:0 0 40px rgba(0,212,255,0.3);
+}
+
+#countdown{
+    font-size:20px;
+    margin-top:15px;
+    color:#00d4ff;
+    font-weight:bold;
+}
+</style>
+
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>ROMINA SOLUCIÓN DIGITAL PRO</h1>
+    <p>Arquitectura Digital. Automatización. Escalabilidad estratégica.</p>
+    <div id="countdown"></div>
+    <button class="btn" onclick="startFunnel()">QUIERO APLICAR</button>
+</section>
+
+<!-- PASO 1 PRE-CALIFICACIÓN -->
+<section id="step1" class="hidden">
+    <h2>Pre-Calificación Estratégica</h2>
+
+    <div class="card">
+        <p>¿Estás dispuesto/a a comprometerte seriamente con tu crecimiento?</p>
+        <button class="btn" onclick="nextStep()">Sí, estoy listo/a</button>
+    </div>
+
+    <div class="card">
+        <p>¿Buscás un sistema escalable y profesional?</p>
+        <button class="btn" onclick="nextStep()">Sí, quiero avanzar</button>
+    </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section>
+    <h2>Beneficios</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>🚀 Modelo Escalable</h3>
+            <p>Crecimiento estructurado sin límites.</p>
+        </div>
+        <div class="card">
+            <h3>🤖 Automatización 24/7</h3>
+            <p>Procesos optimizados trabajando por vos.</p>
+        </div>
+        <div class="card">
+            <h3>💎 Red Estratégica</h3>
+            <p>Acceso a ecosistema premium.</p>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section>
+    <h2>Resultados Reales</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <p>"Escalé mi negocio en menos de 3 meses."</p>
+            <strong>— Mariana G.</strong>
+        </div>
+
+        <div class="card">
+            <p>"Sistema profesional y claro desde el día uno."</p>
+            <strong>— Lucas R.</strong>
+        </div>
+
+        <div class="card">
+            <p>"La automatización cambió completamente mi estructura."</p>
+            <strong>— Carla M.</strong>
+        </div>
+
+        <div class="card">
+            <p>"Accedí a una red estratégica real."</p>
+            <strong>— Fernando T.</strong>
+        </div>
+
+        <div class="card">
+            <p>"Modelo sólido y visión de largo plazo."</p>
+            <strong>— Sofía L.</strong>
+        </div>
+
+    </div>
+</section>
+
+<!-- PASO 2 FORMULARIO -->
+<section id="step2" class="hidden">
+    <h2>Completa tu Aplicación</h2>
+
+    <iframe 
+        src="https://docs.google.com/forms/d/e/1FAIpQLSf0j1BbvLZ7L8g5nGDK5PPoxn3_mZXn3sh_7RmDv5f9xarfXA/viewform?embedded=true"
+        width="100%"
+        height="900"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0">
+    </iframe>
+</section>
+
+<script>
+// CONTADOR REAL CON FECHA FIJA
+const deadline = new Date("2026-03-01T23:59:59").getTime();
+const countdown = document.getElementById("countdown");
+
+setInterval(function(){
+    const now = new Date().getTime();
+    const distance = deadline - now;
+
+    if(distance < 0){
+        countdown.innerHTML = "INSCRIPCIONES CERRADAS";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000*60*60*24));
+    const hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60))/(1000*60));
+
+    countdown.innerHTML = `⏳ Cierra en: ${days}d ${hours}h ${minutes}m`;
+}, 1000);
+
+// FUNNEL
+function startFunnel(){
+    document.getElementById("step1").classList.remove("hidden");
+    document.getElementById("step1").scrollIntoView({behavior:"smooth"});
+}
+
+function nextStep(){
+    document.getElementById("step1").classList.add("hidden");
+    document.getElementById("step2").classList.remove("hidden");
+    document.getElementById("step2").scrollIntoView({behavior:"smooth"});
+}
+</script>
+
+</body>
+</html>
